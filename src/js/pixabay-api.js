@@ -1,14 +1,16 @@
+export function getImage(value) {
+  const KEY = '3539379-d64fd5a5897018ff1512b690c';
+  const BASE_URL = 'https://pixabay.com/api/';
 
-
-export function fetchImages(query) {
-  query = encodeURIComponent(query);
-  galleryList.innerHTML = `<div class="loader"></div>`;
-  return fetch(
-    `https://pixabay.com/api/?key=42609290-856768105ab9e79485c69bf61&q=${query}&image_type=photo&orientation=horizontal&safesearch=true`
-  ).then(response => {
-    if (!response.ok) {
-      throw new Error(response.status);
-    }
-    return response.json();
+  const params = new URLSearchParams({
+    key: KEY,
+    q: value,
+    image_type: 'photo',
+    orientation: 'horizontal',
+    per_page: 30,
+    safesearch: true,
   });
+  const url = `${BASE_URL}?${params}`;
+
+  return fetch(url).then(res => res.json());
 }
