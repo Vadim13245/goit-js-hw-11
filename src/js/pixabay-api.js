@@ -1,5 +1,4 @@
-import { galleryList } from '../main';
-import { query } from '../main';
+
 
 export function fetchImages(query) {
   query = encodeURIComponent(query);
